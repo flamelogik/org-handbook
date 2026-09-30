@@ -4,6 +4,26 @@ Newest first. Each entry records what was decided, who decided it and why. To ch
 
 ---
 
+### 2026-09-30: The two legacy repos are deleted; outside tools are linked, not mirrored
+**Decided by:** the acting owner
+
+- `flameTimewarpML` and `logik-matchbox-shaders`, the only non-LogikProjekt repos in the org, were deleted.
+- **Why:** `flameTimewarpML` was a fork of `talosh/flameTimewarpML` taken in 2022 with no changes of its own, and the original is MIT licensed and actively maintained. The original had rewritten its history, so the fork could no longer be synced normally, and keeping a stale copy under the Logik name invited people to install the wrong version and file issues in the wrong place. `logik-matchbox-shaders` held a single one-line README. Neither had forks, issues, pull requests or releases.
+- **Policy:** well-known Flame tools hosted outside the org are listed under "Flame tools hosted elsewhere" on the org profile page, with a link to where they live. The org does not mirror or fork them. The first entries are Logik Portal, Logik Matchbook and flameTimewarpML.
+- **Consequence:** the plan's Phase 3 no longer has legacy repos to revive. It is rewritten around a new tool the acting owner is building, created through `new-repo.sh`.
+
+---
+
+### 2026-09-30: Phase 1 and 2 corrections found while executing them
+**Decided by:** the acting owner
+
+- **2FA requirement.** GitHub no longer removes members who lack 2FA; it locks them out of org resources until they enable it. Only outside collaborators without 2FA are removed. The plan was written for the old behaviour and is corrected. In practice 6 outside collaborators were removed and 30 members were locked out, and the LogikProjekt maintainer and the affected accounts were told beforehand.
+- **Outside-collaborator invites** can't be restricted on the Free plan; GitHub offers that setting only on Enterprise Cloud. Not needed, because only repo admins can invite and no non-owner holds admin on a community repo.
+- **Security configuration** was applied through the API rather than the web UI, which showed an Advanced Security upgrade prompt that isn't needed for public repos. "GitHub recommended" is the default for new *public* repos only, so a private repo can never pick up a paid feature.
+- **Discussion categories** are managed on the source repo (`.github`), not on the org's Discussions page, and GitHub creates most of the planned categories by default. Only Repo Proposals had to be added.
+
+---
+
 ### 2026-09-30: Conduct reports go to a shared mailbox
 **Decided by:** the acting owner
 
