@@ -4,6 +4,15 @@ Newest first. Each entry records what was decided, who decided it and why. To ch
 
 ---
 
+### 2026-09-30: The first community repo is `flame-sysconfig-setup`
+**Decided by:** the acting owner
+
+- The first community repo is [`flame-sysconfig-setup`](https://github.com/flamelogik/flame-sysconfig-setup), a macOS app that builds a shared Flame `sysconfig.cfg`. It was created with `new-repo.sh`, brought in by pull request and released as v1.0.0 by GitHub Actions. The acting owner (@BayleyBY) is its maintainer.
+- **Why no proposal thread:** the rewritten Phase 3 has the acting owner build the first repo so that newcomers have something real to fork, test and file issues against at launch. The proposal path gets its first real test in the soft launch, where testers open a test proposal.
+- **Release procedure for compiled tools:** releases are published by a workflow when a version tag is pushed, not with `gh release create`. This matches REPO_STANDARDS ("releases are built by GitHub Actions from a tagged commit"). Phase 3 of the plan said otherwise and has been corrected.
+
+---
+
 ### 2026-09-30: The two legacy repos are deleted; outside tools are linked, not mirrored
 **Decided by:** the acting owner
 
