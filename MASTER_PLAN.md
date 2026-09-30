@@ -10,7 +10,7 @@ This is a living checklist. Tick boxes as you finish them, and add notes directl
 
 1. Lock the org down so nobody can change things on their own, and make every change go through a reviewed pull request.
 2. Give every repo the same foundation: license, README standard, templates, security settings and branch protection.
-3. Revive the two community repos the acting owner maintains.
+3. Launch with at least one real community repo, built and maintained by the acting owner, so newcomers have something to fork, test and file issues against. *(Rewritten 2026-09-30. The original goal was to revive two legacy repos; see the decision log for why they were deleted instead.)*
 4. Open a clear, public path for any Flame artist to contribute to an existing repo or propose a new one.
 5. Leave LogikProjekt exactly as it is.
 
@@ -36,7 +36,7 @@ A few settings are **organization-wide**, though, and reach every repo automatic
 | 0. Prep and audit | Sep 21 – 27 | You know exactly who has access to what, and the LogikProjekt owner has been told what's coming |
 | 1. Lock down | Sep 28 – Oct 2 | No one can change anything except through PRs |
 | 2. Foundation repos | Sep 30 – Oct 9 | `.github`, `org-handbook` and `repo-template` are live, and Discussions is open (unannounced) |
-| 3. Your two repos | Oct 5 – 16 | Both repos are up to standard, released and seeded with starter issues |
+| 3. First community repo | Oct 5 – 16 | The acting owner's new tool is in the org, up to standard, released and seeded with starter issues |
 | 4. Soft launch | Oct 19 – 23 | 3 to 5 trusted artists have tested the whole flow, and owner or maintainer candidates are identified |
 | 5. Launch | Week of Oct 26 | Public announcement goes out |
 | 6. After launch | Nov onward | 30-day and 90-day reviews, move to 2-of-3 approvals |
@@ -134,7 +134,7 @@ What GitHub does now, checked 2026-09-30: **members** without 2FA stay in the or
 - [x] Read through `GOVERNANCE.md`, `CONTRIBUTING.md` and `CODE_OF_CONDUCT.md` in `dot-github/`. It's much easier to tweak them now than after launch. Done 2026-09-21; changes recorded in DECISIONS.md.
 
 ### 2b. Create the repos and teams (CLI)
-- [ ] From the kit's top folder (the one that contains `dot-github/`), run:
+- [x] From the kit's top folder (the one that contains `dot-github/`), run: Done 2026-09-30; two teams, three public repos, settings, Maintain for `owners`, ruleset, template flag, Discussions and labels all read back correctly from the API.
   ```bash
   ./org-handbook/scripts/03-bootstrap.sh
   ```
@@ -146,11 +146,11 @@ What GitHub does now, checked 2026-09-30: **members** without 2FA stay in the or
   - Gives the `owners` team Maintain access and makes it the code owner of all three repos.
   - Applies the branch ruleset to all three.
   - Enables Discussions on `.github` and creates the `proposal`, `accepted` and `declined` labels.
-- [ ] After the first run, check one ruleset in the web UI: **Repo → Settings → Rules → Rulesets → protect-default-branch**. Confirm it requires a PR with 1 approval and that "Organization admin" can bypass *for pull requests only*. That bypass lets you merge your own PRs while you're the only active owner.
+- [x] After the first run, check one ruleset in the web UI: **Repo → Settings → Rules → Rulesets → protect-default-branch**. Confirm it requires a PR with 1 approval and that "Organization admin" can bypass *for pull requests only*. That bypass lets you merge your own PRs while you're the only active owner. Checked 2026-09-30 through the API on `org-handbook`: PR with 1 approval, stale approvals dismissed, threads resolved, no deletion or force push, `OrganizationAdmin` bypass in `pull_request` mode only.
 
 ### 2c. Organization Discussions (web, because the API can't do this)
-- [ ] **Org Settings → Discussions →** enable, and choose `flamelogik/.github` as the source repo.
-- [ ] Open the Discussions tab in the org and set up these categories. Pick each emoji with the category's emoji picker instead of typing it into the name, so the URL slugs stay clean (`repo-proposals`, `q-a`, and so on). The issue-form links depend on those slugs.
+- [x] **Org Settings → Discussions →** enable, and choose `flamelogik/.github` as the source repo. Done 2026-09-30.
+- [x] Set up these categories. They are managed on the source repo at github.com/flamelogik/.github/discussions/categories, not on the org's Discussions page. GitHub creates Announcements, Ideas, Q&A and Show and tell by default, so only Repo Proposals has to be added. Pick each emoji with the category's emoji picker instead of typing it into the name, so the URL slugs stay clean (`repo-proposals`, `q-a`, and so on). The issue-form links depend on those slugs. Done 2026-09-30; the API reads back five categories with slugs `announcements`, `ideas`, `q-a`, `repo-proposals` and `show-and-tell`.
 
   | Category | Format | Notes |
   |---|---|---|
@@ -160,40 +160,35 @@ What GitHub does now, checked 2026-09-30: **members** without 2FA stay in the or
   | 🙏 Q&A | Question / Answer | Help using community tools |
   | 🎬 Show and Tell | Open-ended discussion | Work made with community tools |
 
-- [ ] Delete the default categories you don't want, such as General and Polls.
-- [ ] Test it: start a new discussion in Repo Proposals and confirm the form appears. Then delete the test.
+- [x] Delete the default categories you don't want, such as General and Polls. Done 2026-09-30; both are gone.
+- [x] Test it: start a new discussion in Repo Proposals and confirm the form appears. Then delete the test. Done 2026-09-30; the proposal form loads with its fields, and Announcements shows a plain title and body, which is correct because it has no template.
 
 ### 2d. Organization profile (web, because the API can't set the avatar)
-- [ ] **Org Settings → Profile.** Upload the existing Logik logo as the profile picture, set the description to something like "Community tools for Autodesk Flame, from the Logik user group", and put `https://forum.logik.tv/` in the URL field. The Logik community leads were told on 2026-09-22 that the existing logo and the `y9ZQFZY2BA` Discord invite are being used; swap either only if they object.
+- [x] **Org Settings → Profile.** Upload the existing Logik logo as the profile picture, set the description to something like "Community tools for Autodesk Flame, from the Logik user group", and put `https://forum.logik.tv/` in the URL field. The Logik community leads were told on 2026-09-22 that the existing logo and the `y9ZQFZY2BA` Discord invite are being used; swap either only if they object. Done 2026-09-30. The logo and display name were already set; the description was added, and the URL stays `www.logik.tv` because the forum is linked from the profile README anyway.
+- [x] Profile README: added a "Flame tools hosted elsewhere" heading linking Logik Portal, Logik Matchbook and flameTimewarpML, so well-known tools outside the org are findable without mirroring them. Done 2026-09-30 through `.github` PRs #2 and #3, the first PRs merged with the owner bypass.
+
+**Phase 2 complete 2026-09-30.**
 
 ---
 
-## Phase 3: Your two repos (Oct 5 – 16)
+## Phase 3: First community repo (Oct 5 – 16)
 
-Work through this for **each** of your two repos. Replace `REPO` with its name.
+*Rewritten 2026-09-30.* The two legacy repos this phase was about turned out to be a stale fork of someone else's actively maintained project and an empty repo. Both were deleted (see DECISIONS.md, 2026-09-30). The first community repo is instead a new tool the acting owner is building. Its repo is created with `new-repo.sh`, which makes this the first real run of that script and of the whole new-repo path. Replace `REPO` with the tool's name.
 
-- [ ] **Assign yourself as maintainer.** This creates the `REPO-maintainers` team.
+- [ ] **Get the tool ready in its own working copy first.** It needs the README sections from `repo-template` (status, maintainer, what it does, compatibility table, install, usage, known issues, credits), a `CHANGELOG.md`, and a clean provenance: no adapted code without its source and license noted. Test it on at least one current Flame version and OS and record that in the compatibility table.
+- [ ] **Choose the name, description and topics.** Name is lowercase-with-hyphens and describes the tool. Pick at least one kind topic and one area topic from REPO_STANDARDS.md.
+- [ ] **Create the repo.** From `org-handbook/`:
   ```bash
-  ./scripts/add-maintainer.sh REPO your-github-username
+  ./scripts/new-repo.sh REPO your-github-username "One-line description" "flame,logik,<kind-topic>,<area-topic>"
   ```
-- [ ] **Bring the files up to standard** on a branch. You can still push directly at this point, but the next steps protect the branch. Copy what you need from `repo-template`:
-  - [ ] Replace the README with the standard sections: status, maintainer, compatibility table, install, usage, known issues.
-  - [ ] Add a `LICENSE` file (MIT). If people outside the community contributed code before, ask them to confirm they're OK with MIT. A quick "👍 in this issue" is enough to record it.
-  - [ ] Add a `CHANGELOG.md`.
-  - [ ] Add `.github/CODEOWNERS` containing `* @flamelogik/REPO-maintainers`.
-  - [ ] Merge the `.gitignore` from the template.
-- [ ] **Apply the standard settings and protection.**
-  ```bash
-  ./scripts/protect-repo.sh REPO
-  gh repo edit flamelogik/REPO --add-topic flame,logik,<kind-topic>,<area-topic>
-  ```
-  From here on, you work through branches and PRs too. The owner bypass lets you merge your own PRs without a second reviewer for now.
-- [ ] **Update the code for current Flame versions,** test it, and fill in the compatibility table.
+  The script creates the repo from `repo-template`, creates the `REPO-maintainers` team and adds you, fills in the README, LICENSE and CODEOWNERS placeholders, adds the topics, and applies the standard settings and the branch ruleset. Check the result at github.com/flamelogik/REPO. The "GitHub recommended" security configuration attaches automatically because it's the org default for new public repos.
+- [ ] **Bring the code in through a pull request.** Clone the new repo, add the tool's files on a branch, and open a PR. The owner bypass lets you merge it without a second reviewer for now. This is the same path every contributor will use, so note anything awkward for the contributing guide.
 - [ ] **Cut a release:**
   ```bash
   gh release create v1.0.0 --repo flamelogik/REPO --generate-notes
   ```
-- [ ] **Open 3 to 5 starter issues** labeled `good first issue` and `help wanted`. These give launch-day volunteers a concrete first task.
+- [ ] **Open 3 to 5 starter issues** labeled `good first issue` and `help wanted`. Include at least one "test on Flame VERSION on OS and report back" issue, since that's the contribution most artists can make on day one.
+- [ ] **Record what the script got wrong or missed** and fix it in `scripts/` by PR before the soft launch.
 
 ---
 
