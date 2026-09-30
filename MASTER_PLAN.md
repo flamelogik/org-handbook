@@ -175,20 +175,28 @@ What GitHub does now, checked 2026-09-30: **members** without 2FA stay in the or
 
 *Rewritten 2026-09-30.* The two legacy repos this phase was about turned out to be a stale fork of someone else's actively maintained project and an empty repo. Both were deleted (see DECISIONS.md, 2026-09-30). The first community repo is instead a new tool the acting owner is building. Its repo is created with `new-repo.sh`, which makes this the first real run of that script and of the whole new-repo path. Replace `REPO` with the tool's name.
 
-- [ ] **Get the tool ready in its own working copy first.** It needs the README sections from `repo-template` (status, maintainer, what it does, compatibility table, install, usage, known issues, credits), a `CHANGELOG.md`, and a clean provenance: no adapted code without its source and license noted. Test it on at least one current Flame version and OS and record that in the compatibility table.
-- [ ] **Choose the name, description and topics.** Name is lowercase-with-hyphens and describes the tool. Pick at least one kind topic and one area topic from REPO_STANDARDS.md.
-- [ ] **Create the repo.** From `org-handbook/`:
+- [x] **Get the tool ready in its own working copy first.** It needs the README sections from `repo-template` (status, maintainer, what it does, compatibility table, install, usage, known issues, credits), a `CHANGELOG.md`, and a clean provenance: no adapted code without its source and license noted. Test it on at least one current Flame version and OS and record that in the compatibility table. Done 2026-09-30: the tool is **Flame Sysconfig Setup**, a SwiftUI macOS app that builds a shared `sysconfig.cfg`. All code is original and uses only Apple frameworks. It was tested on Flame 2025 to 2027.2 on macOS; Rocky Linux is marked ❌ because it's a macOS app.
+- [x] **Choose the name, description and topics.** Name is lowercase-with-hyphens and describes the tool. Pick at least one kind topic and one area topic from REPO_STANDARDS.md. Done 2026-09-30: `flame-sysconfig-setup`, topics `flame,logik,flame-tool,flame-pipeline`.
+- [x] **Create the repo.** From `org-handbook/`:
   ```bash
   ./scripts/new-repo.sh REPO your-github-username "One-line description" "flame,logik,<kind-topic>,<area-topic>"
   ```
-  The script creates the repo from `repo-template`, creates the `REPO-maintainers` team and adds you, fills in the README, LICENSE and CODEOWNERS placeholders, adds the topics, and applies the standard settings and the branch ruleset. Check the result at github.com/flamelogik/REPO. The "GitHub recommended" security configuration attaches automatically because it's the org default for new public repos.
-- [ ] **Bring the code in through a pull request.** Clone the new repo, add the tool's files on a branch, and open a PR. The owner bypass lets you merge it without a second reviewer for now. This is the same path every contributor will use, so note anything awkward for the contributing guide.
-- [ ] **Cut a release:**
+  The script creates the repo from `repo-template`, creates the `REPO-maintainers` team and adds you, fills in the README, LICENSE and CODEOWNERS placeholders, adds the topics, and applies the standard settings and the branch ruleset. Check the result at github.com/flamelogik/REPO. The "GitHub recommended" security configuration attaches automatically because it's the org default for new public repos. Done 2026-09-30: the first real run of the script completed without errors, and every setting read back correctly.
+- [x] **Bring the code in through a pull request.** Clone the new repo, add the tool's files on a branch, and open a PR. The owner bypass lets you merge it without a second reviewer for now. This is the same path every contributor will use, so note anything awkward for the contributing guide. Done 2026-09-30 ([#1](https://github.com/flamelogik/flame-sysconfig-setup/pull/1)). What was awkward:
+  - **Merging your own PR.** The normal merge button stays blocked, waiting for a review. As an owner, tick the option under the merge button to bypass the rules first, or run `gh pr merge N --squash --admin --delete-branch`. Check the PR really shows as merged before syncing or tagging; the first attempt here didn't go through.
+  - **Bringing in an existing working copy.** It shares no history with the template's commits. On a new branch, `git reset --soft origin/main` then `git add -A` turns the whole tool into one commit on top of the template, with no merge of unrelated histories.
+  - **Executable scripts committed from network storage.** Volumes such as Avid NEXIS don't keep Unix permissions, so git runs with `core.fileMode=false` and commits scripts as non-executable. The release build then failed with `Permission denied`. The fix is `git update-index --chmod=+x SCRIPT` ([#2](https://github.com/flamelogik/flame-sysconfig-setup/pull/2)). This belongs in the contributing guide, because many Flame facilities work from shared storage.
+- [x] **Cut a release.** For a **compiled tool** (an app or OpenFX plugin), REPO_STANDARDS requires releases to be built by GitHub Actions. Give the repo a release workflow that builds on a tag push and attaches the build and its checksum. Then move `[Unreleased]` in `CHANGELOG.md` to the version by PR, and tag the merge commit:
   ```bash
-  gh release create v1.0.0 --repo flamelogik/REPO --generate-notes
+  git tag -a v1.0.0 -m "REPO 1.0.0" && git push origin v1.0.0
   ```
-- [ ] **Open 3 to 5 starter issues** labeled `good first issue` and `help wanted`. Include at least one "test on Flame VERSION on OS and report back" issue, since that's the contribution most artists can make on day one.
-- [ ] **Record what the script got wrong or missed** and fix it in `scripts/` by PR before the soft launch.
+  Run the workflow by hand first (Actions → the workflow → **Run workflow**) and check its output before tagging. For a repo with nothing to build, such as Python hooks or Matchbox shaders, use `gh release create v1.0.0 --repo flamelogik/REPO --generate-notes` instead. Done 2026-09-30: [v1.0.0](https://github.com/flamelogik/flame-sysconfig-setup/releases/tag/v1.0.0), built by the repo's `release.yml` with a SHA-256 checksum. The downloaded build was checked.
+- [x] **Open 3 to 5 starter issues** labeled `good first issue` and `help wanted`. Include at least one "test on Flame VERSION on OS and report back" issue, since that's the contribution most artists can make on day one. Done 2026-09-30: [#4–#8](https://github.com/flamelogik/flame-sysconfig-setup/issues). These cover testing on an Intel Mac, a first-time-user walkthrough, a README screenshot, notarization, and a mixed macOS/Rocky Linux facility.
+- [x] **Record what the script got wrong or missed** and fix it in `scripts/` by PR before the soft launch. Done 2026-09-30 in this PR:
+  - `new-repo.sh` worked as written.
+  - Its closing message told you to post in a proposal thread, which an owner-built repo doesn't have. It now says to do that only if the repo came from a proposal.
+  - This checklist's release step contradicted REPO_STANDARDS for compiled tools, and is corrected above.
+  - Not changed: `repo-template` has no release workflow, so each compiled tool writes its own. `flame-sysconfig-setup/.github/workflows/release.yml` can be copied as a starting point. It uses only GitHub-owned actions (`actions/checkout@v7`, `actions/upload-artifact@v7`, both on Node 24) and declares `contents: write`, as the org's read-only default token requires.
 
 ---
 

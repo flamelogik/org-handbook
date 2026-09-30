@@ -58,4 +58,4 @@ gh repo edit "$ORG/$NAME" --add-topic "$TOPICS"
 
 echo
 echo "✅ https://github.com/$ORG/$NAME is ready."
-echo "   Post the link in the proposal thread and add the 'accepted' label."
+echo "   If it came from a proposal, post the link in the thread and add the 'accepted' label."
