@@ -4,6 +4,17 @@ Newest first. Each entry records what was decided, who decided it and why. To ch
 
 ---
 
+### 2026-10-01: "Repo Proposals" becomes "Share a Project"
+**Decided by:** the acting owner, on a tester's feedback
+
+- The Discussions category for bringing a tool into the org is renamed from Repo Proposals to **Share a Project**. Its form, the issue-chooser link and the docs follow.
+- **Why:** a soft-launch tester read "Repo Proposals" two ways: a contributor bringing a project they will maintain, or anyone suggesting a tool somebody should build. The second already has a home in **Ideas**. Several docs made it worse with lines like "have something the community could build together?".
+- **The line between the two:** Share a Project is for work with a named maintainer, finished or in progress. Ideas is for suggestions with no commitment. An idea that gains a maintainer moves on to Share a Project.
+- **Unchanged:** the process (7 days of comment, then an owner decision within 14), the criteria, the `proposal`, `accepted` and `declined` labels, and the file name `PROPOSING_A_REPO.md`, kept so existing links don't break. Its heading is now "Sharing a project".
+- **Mechanics worth knowing:** the form only loads when its file name matches the category slug, so the category rename in the web UI and the file rename in `.github` have to land together.
+
+---
+
 ### 2026-09-30: The first community repo is `flame-sysconfig-setup`
 **Decided by:** the acting owner
 

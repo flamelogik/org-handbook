@@ -163,6 +163,8 @@ What GitHub does now, checked 2026-09-30: **members** without 2FA stay in the or
 - [x] Delete the default categories you don't want, such as General and Polls. Done 2026-09-30; both are gone.
 - [x] Test it: start a new discussion in Repo Proposals and confirm the form appears. Then delete the test. Done 2026-09-30; the proposal form loads with its fields, and Announcements shows a plain title and body, which is correct because it has no template.
 
+  *Renamed 2026-10-01:* Repo Proposals is now **Share a Project** (slug `share-a-project`, form file `share-a-project.yml`), after a tester read the old name as covering loose ideas too. See DECISIONS.md.
+
 ### 2d. Organization profile (web, because the API can't set the avatar)
 - [x] **Org Settings → Profile.** Upload the existing Logik logo as the profile picture, set the description to something like "Community tools for Autodesk Flame, from the Logik user group", and put `https://forum.logik.tv/` in the URL field. The Logik community leads were told on 2026-09-22 that the existing logo and the `y9ZQFZY2BA` Discord invite are being used; swap either only if they object. Done 2026-09-30. The logo and display name were already set; the description was added, and the URL stays `www.logik.tv` because the forum is linked from the profile README anyway.
 - [x] Profile README: added a "Flame tools hosted elsewhere" heading linking Logik Portal, Logik Matchbook and flameTimewarpML, so well-known tools outside the org are findable without mirroring them. Done 2026-09-30 through `.github` PRs #2 and #3, the first PRs merged with the owner bypass.
@@ -204,7 +206,7 @@ What GitHub does now, checked 2026-09-30: **members** without 2FA stay in the or
 
 - [ ] Invite 3 to 5 trusted Flame artists, including a couple who've never used GitHub, to run through the whole flow:
   *Four testers were invited on 2026-09-30. Their names stay in the private working notes until they agree to be listed.*
-  - [ ] Open a test repo proposal.
+  - [ ] Share a test project through the **Share a Project** form.
   - [ ] Fork one of your repos, make a small change and open a PR.
   - [ ] File a bug using the issue form.
 - [ ] Fix whatever confused them, whether it's the docs, forms or templates.
