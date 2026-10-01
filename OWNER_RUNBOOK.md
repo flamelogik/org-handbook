@@ -8,7 +8,7 @@ This covers the recurring jobs owners handle. Every command assumes you're in th
 
 ## 🔑 Reviewing a repo proposal
 
-Proposals arrive in **Discussions → Repo Proposals**, labeled `proposal`.
+Submissions arrive in **Discussions → Share a Project**, labeled `proposal`. The category was called Repo Proposals until 2026-10-01. Rough ideas with no maintainer belong in **Ideas**; if one lands here, move it there and say why.
 
 1. **Acknowledge it within a week.** Thank them, and ask about anything missing from the form.
 2. **Leave it open for comments for at least 7 days,** so the community can weigh in and spot duplicates.
