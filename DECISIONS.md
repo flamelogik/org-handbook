@@ -4,6 +4,18 @@ Newest first. Each entry records what was decided, who decided it and why. To ch
 
 ---
 
+### 2026-10-21: A second owner, and approvals move to two owners
+**Decided by:** the acting owner
+
+- A second owner was added on 2026-10-21: the maintainer of the first accepted submission, Connected Conform Manager, a long-standing Logik community member. The invitation was accepted the same day and the new owner is in the `owners` team.
+- A third owner was invited the same day: the maintainer of the second submission, an OpenFX plugin. That invitation is pending. The acting owner's reason: a trusted, long-standing member of the Logik community.
+- **License exception recorded:** that second submission is MPL-2.0 rather than MIT. It is OSI-approved and allows commercial use, and the maintainer's stated reason is to encourage improvements to flow back to the original repo. Accepted under the repo standards' "other OSI-approved license with a stated reason" rule.
+- **Why owners rather than maintainers only:** the org has had one active owner since the relaunch, and GOVERNANCE.md says it should never depend on one person. Both people are bringing a tool in and committing to maintain it. An owner can also transfer their own repo into the org directly, which avoids the two-hop handoff the runbook describes for members.
+- **Consequence:** GOVERNANCE.md changes from the interim one-owner rule to approval from two owners (the requester not counting), with one owner's approval as the fallback while fewer than two are active. Worded as "two owners" rather than "2 of 3", because the owner count is no longer three. The change is open for its 7-day comment period as a pull request on `.github`.
+- **Kept for now:** the owner bypass on the infrastructure repos' rulesets, so a lone active owner can't be locked out. Reviewed once two owners have been active for 90 days.
+
+---
+
 ### 2026-10-01: "Repo Proposals" becomes "Share a Project"
 **Decided by:** the acting owner, on a tester's feedback
 
