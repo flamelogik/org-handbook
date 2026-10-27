@@ -229,8 +229,8 @@ What GitHub does now, checked 2026-09-30: **members** without 2FA stay in the or
 - [ ] **30 days (late Nov):** Review which docs or forms caused confusion, and update them through PRs.
 - [ ] **90 days (late Jan):** Review the idle original members. Keep anyone who engaged. For the rest, the owners decide whether to remove them. Log that decision in DECISIONS.md.
 - [x] **When there are at least 2 active owners:** Reached 2026-10-21, when a second owner accepted the invitation.
-  - [ ] Update GOVERNANCE.md so approvals require two owners (worded that way, not "2 of 3", since the count is no longer three), and log it in DECISIONS.md. Logged 2026-10-21; the GOVERNANCE pull request is open for its 7-day comment period.
-  - [x] Add the new owners to the `owners` team. Done 2026-10-21 for the second owner; the third is invited and pending.
+  - [x] Update GOVERNANCE.md so approvals require two owners (worded that way, not "2 of 3", since the count is no longer three), and log it in DECISIONS.md. Done 2026-10-21 (`.github` PR #9); see the 2026-10-27 decision entry about the comment period.
+  - [x] Add the new owners to the `owners` team. Done 2026-10-21 for the second owner, 2026-10-22 for the third; the fourth and fifth are being added as they accept.
   - [ ] Consider removing the owner bypass from the rulesets, so owners review each other's PRs. Deferred 2026-10-21 until two owners have been active for 90 days.
 - [ ] **Quarterly:** Run `./scripts/00-audit.sh` and follow the audit checklist in OWNER_RUNBOOK.md.
 
