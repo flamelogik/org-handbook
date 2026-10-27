@@ -4,6 +4,15 @@ Newest first. Each entry records what was decided, who decided it and why. To ch
 
 ---
 
+### 2026-10-27: Five owners, and the two-owner rule is in force
+**Decided by:** the acting owner
+
+- Three more owners accepted between 2026-10-22 and 2026-10-27: the maintainer of the OpenFX submission (invited 2026-10-21) and two of the soft-launch testers, both long-standing Logik community members. A third tester's invitation is pending. With the two inactive original owners that makes six owners, four of them active.
+- **Why:** GOVERNANCE.md wants the org never to depend on one person. Four active owners means two-owner approval always has a quorum, and the org has people on both macOS and Linux and across Python and OpenFX work.
+- The GOVERNANCE.md change to two-owner approval (`.github` PR #9) was merged on 2026-10-21, the day it was opened, by the acting owner alone. That skipped the 7-day comment period the document asks for on significant changes. Recorded here rather than reverted: the rule it introduced is the one every later change, starting with the repo-standards update on acceptance tests and licensing, is being held to.
+
+---
+
 ### 2026-10-21: A second owner, and approvals move to two owners
 **Decided by:** the acting owner
 
